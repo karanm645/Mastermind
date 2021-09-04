@@ -13,10 +13,10 @@ RSpec.describe Messages do
     expect(welcome_message).to eq('')
   end
 
-  it "allows the player to quit"
+  it "allows the player to quit" do
    messages = Messages.new
    quit_message = ''
-   expect(quit_message) = ''
+   expect(quit_message).to eq('')
   end
 
 
@@ -61,3 +61,5 @@ RSpec.describe Messages do
   endgame_message = ''
   expect(endgame_message).to eq('')
   end
+
+end
