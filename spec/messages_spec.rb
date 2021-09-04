@@ -37,3 +37,27 @@ RSpec.describe Messages do
     game_flow_message = ''
     expect(game_flow_message).to eq('')
   end
+
+  it "tells user guess was too long" do
+    messages = Messages.new
+    guess_too_long = ''
+    expect(guess_too_long).to eq('')
+  end
+
+  it "tells user guess was too short" do
+    messages = Messages.new
+    guess_too_short = ''
+    expect(guess_too_short).to eq('')
+  end
+
+  it "tells user they won" do
+    messages = Messages.new
+    win_message = ''
+    expect(win_message).to eq('')
+  end
+
+  it 'displays endgame message' do
+  messages = Messages.new
+  endgame_message = ''
+  expect(endgame_message).to eq('')
+  end
