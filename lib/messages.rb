@@ -30,3 +30,39 @@ class Messages
     Enter your guess below!
     >"
   end
+
+  def guess_too_long
+      puts "Sorry, that guess was too long.
+            Please enter FOUR characters.
+            Try again!"
+  end
+
+  def guess_too_short
+      puts "Sorry, that guess was too short.
+            Please enter FOUR characters.
+            Try again!"
+  end
+
+  def win_message
+      puts 'Congrats! Looks like you won. Would you like to (p)lay again
+      or (q)uit?'
+  end
+
+
+    # def time_message
+    #   if time something
+    #     string interp message
+    #   end
+    # end
+
+    # def guess_count_message
+    #   if guess is something
+    #     string interp message
+    #   end
+    # end
+
+  def endgame_message
+  puts  "Thanks for playing MASTERMIND!!!"
+  end
+
+  end
