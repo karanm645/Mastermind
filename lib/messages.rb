@@ -10,18 +10,18 @@ class Messages
 
   def welcome_not_valid
     puts "That input is not valid.
-    Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    Press enter to return to the welcome screen."
   end
 
   def instructions_message
     puts "To play MASTERMIND, guess a
     combination of these 4 colors:
     (r)ed, (g)reen, (y)ellow, (b)lue.
-    enter (h)ome to return to welcome screen."
-  end
+    Press enter to return to welcome screen."
 
   def quit_message
-    puts 'You have quit.'
+    puts "Nobody can beat the MASTERMIND! HA! HA!."
+    #ASCII SKULL
   end
 
   def game_flow_message
@@ -66,3 +66,4 @@ class Messages
   end
 
   end
+end 
