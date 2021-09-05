@@ -1,12 +1,11 @@
-require './lib/messages'
-
 class Game
   def initialize
     @messages = Messages.new
-    # @generate_secret = Code_Generator.new
+    @color_code = CodeGenerator.new.generate_secret.join
   end
 
   def start_menu
+    puts @color_code
     @messages.welcome_message
     user_input = gets.chomp.downcase.strip.delete(" ")
     menu_loop(user_input)
@@ -37,44 +36,48 @@ class Game
 
 
 def play
+  @messages.game_flow_message
+  guess = gets.chomp.downcase.strip
 
-    if arg.length == 4
-      @messages.gameflow_message
-      return evaluate_guess # we will need to define this method, will be an enumerable, print the results
-      #press any key to guess again(send back to game flow loop)
-
-    elsif arg == "q" || arg == "quit"
+  if guess == "q" || guess == "quit"
     @messages.quit_message
-    exit
-      menu_loop(user_input)
 
-    elsif arg == "c" || arg == "cheat"
-      @color_code.to_s #color_code is an array
-      @messages.cheat_message #cheat message will say "there's the answer, press enter to guess again"
-      gets
-      #returns to game_flow_loop
+  elsif guess == @color_code.to_s
+  win
 
-    elsif arg.length > 4
-      @messages.too_long
-      gets #message will include press enter to return to game"
-      #returns to game_flow_loop
+  elsif guess.length == 4
+      evaluate_guess # we will need to define this method, will be an enumerable, print the results
+      #press any key to guess again(send back to game flow loop)
+  elsif guess == "c" || guess == "cheat"
+    @messages.cheat_message #cheat message will say "there's the answer, press enter to guess again"
+    puts @color_code
+    play 
+    #returns to game_flow_loop
 
-    elsif arg.length < 4
-      @messages.too_short
-      gets #message will include press enter to return to game"
-      #returns to game_flow_loop
+  elsif guess.length > 4
+    @messages.guess_too_long
+    play #message will include press enter to return to game"
+    #returns to game_flow_loop
 
-
-      menu_loop(user_input)
+  elsif guess.length < 4
+    @messages.guess_too_short
+     #message will include press enter to return to game"
+    #returns to game_flow_loop
+    play
     end
   end
 
-  def evaulate_guess
+  def evaluate_guess
+    puts "your guess is correct!"
+    #will start the timer, and guess counter, and code generator
     #array comparison
     #each enumerable index
     #colors correct finds intersection of two arrays?
     #only saves things it finds in both
+  end
 
+  def win
+    puts "You have beat the Mastermind!!"
   end
 
 
