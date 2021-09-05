@@ -1,7 +1,4 @@
 class Messages
-  def initialize
-  end
-
   def welcome_message
     puts "Welcome to MASTERMIND
     Would you like to (p)lay, read the (i)nstructions, or (q)uit?
@@ -29,6 +26,10 @@ class Messages
     (r)ed, (g)reen, (b)lue and (y)ellow. Can you guess it?
     Enter your guess below!
     >"
+  end
+
+  def cheat_message
+    puts "The secret code is:"
   end
 
   def guess_too_long
