@@ -18,8 +18,8 @@ class Game
       gets
       @messages.welcome_message
       user_input = gets.chomp.downcase.strip.delete(" ")
-
       menu_loop(user_input)
+
     elsif arg == "q" || arg == "quit"
       @messages.quit_message
       exit

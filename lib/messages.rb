@@ -18,10 +18,10 @@ class Messages
     combination of these 4 colors:
     (r)ed, (g)reen, (y)ellow, (b)lue.
     Press enter to return to welcome screen."
+  end
 
   def quit_message
-    puts "Nobody can beat the MASTERMIND! HA! HA!."
-    #ASCII SKULL
+    puts "Nobody can beat the MASTERMIND! HA! HA!"
   end
 
   def game_flow_message
@@ -66,4 +66,3 @@ class Messages
   end
 
   end
-end 
