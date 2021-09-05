@@ -5,4 +5,3 @@ game = Game.new
 
 # PRESS PLAY!!!
 game.start_menu
-game.play

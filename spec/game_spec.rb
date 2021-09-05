@@ -6,6 +6,7 @@ RSpec.describe Game do
   game = Game.new
 
   expect(game).to be_an_instance_of(Game)
+  expect(game.play).to eq('')
 end
 
  #it "gives instructions when given i/incstructions" do

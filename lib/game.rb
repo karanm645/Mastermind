@@ -21,11 +21,10 @@ class Game
       menu_loop(user_input)
 
     elsif arg == "q" || arg == "quit"
-      @messages.quit_message
-      exit
-      # tell the player that character is wrong
+       @messages.quit_message
+
     elsif arg == "p" || arg == "play"
-      return "start"
+      play
 
     else
       @messages.welcome_not_valid
@@ -36,9 +35,48 @@ class Game
     end
   end
 
-  def play
-    puts "You're playing now"
+
+def play
+
+    if arg.length == 4
+      @messages.gameflow_message
+      return evaluate_guess # we will need to define this method, will be an enumerable, print the results
+      #press any key to guess again(send back to game flow loop)
+
+    elsif arg == "q" || arg == "quit"
+    @messages.quit_message
+    exit
+      menu_loop(user_input)
+
+    elsif arg == "c" || arg == "cheat"
+      @color_code.to_s #color_code is an array
+      @messages.cheat_message #cheat message will say "there's the answer, press enter to guess again"
+      gets
+      #returns to game_flow_loop
+
+    elsif arg.length > 4
+      @messages.too_long
+      gets #message will include press enter to return to game"
+      #returns to game_flow_loop
+
+    elsif arg.length < 4
+      @messages.too_short
+      gets #message will include press enter to return to game"
+      #returns to game_flow_loop
+
+
+      menu_loop(user_input)
+    end
   end
+
+  def evaulate_guess
+    #array comparison
+    #each enumerable index
+    #colors correct finds intersection of two arrays?
+    #only saves things it finds in both
+
+  end
+
 
   # def input(arg)
   #   if arg == "p" || arg == "play"
