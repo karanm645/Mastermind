@@ -1,5 +1,5 @@
 require './lib/messages'
-# require './lib/code_generator'
+require './lib/code_generator'
 require './lib/game'
 game = Game.new
 
