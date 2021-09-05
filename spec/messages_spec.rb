@@ -1,5 +1,7 @@
 require 'RSpec'
 require './lib/messages'
+require './lib/code_generator'
+require './lib/game'
 
 RSpec.describe Messages do
   it "exists" do
