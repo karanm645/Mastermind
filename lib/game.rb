@@ -18,20 +18,20 @@ class Game
       gets
       @messages.welcome_message
       user_input = gets.chomp.downcase.strip.delete(" ")
-
       menu_loop(user_input)
+
     elsif arg == "q" || arg == "quit"
       @messages.quit_message
       exit
       # tell the player that character is wrong
     elsif arg == "p" || arg == "play"
       return "start"
+
     else
       @messages.welcome_not_valid
       gets
       @messages.welcome_message
       user_input = gets.chomp.downcase.strip.delete(" ")
-
       menu_loop(user_input)
     end
   end
