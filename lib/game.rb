@@ -26,12 +26,12 @@ class Game
       # tell the player that character is wrong
     elsif arg == "p" || arg == "play"
       return "start"
+
     else
       @messages.welcome_not_valid
       gets
       @messages.welcome_message
       user_input = gets.chomp.downcase.strip.delete(" ")
-
       menu_loop(user_input)
     end
   end
