@@ -1,12 +1,13 @@
 require './lib/game'
 require './lib/messages'
+require './lib/code_generator'
 
 RSpec.describe Game do
   it "exists" do
   game = Game.new
 
   expect(game).to be_an_instance_of(Game)
-  expect(game.play).to eq('')
+  # expect(game.play).to include('Lets start!') ---- need help from instructors
 end
 
  #it "gives instructions when given i/incstructions" do
