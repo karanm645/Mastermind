@@ -8,14 +8,8 @@ RSpec.describe Game do
   expect(game).to be_an_instance_of(Game)
 end
 
-#   it "returns instructions when i given" do
-#     game = Game.new
-#     messages = Messages.new
-#     user_input = menu_loop("i")
-#
-#     expect(input1).to eq(messages.instructions_message)
-#   end
-#
+ #it "gives instructions when given i/incstructions" do
+ #end
 #   it "returns instructions when instructions given" do
 #     game = Game.new
 #     messages = Messages.new
