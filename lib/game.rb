@@ -2,11 +2,11 @@ class Game
   def initialize
     @messages = Messages.new
     @color_code = CodeGenerator.new
-    @evaluator = Evaluator.new
+    # @evaluator = Evaluator.new
   end
 
   def start_menu
-    @messages.welcome_message
+    puts @messages.welcome_message
     @color_code = CodeGenerator.new.generate_secret
     user_input = gets.chomp.downcase.strip.delete(" ")
     menu_loop(user_input)
@@ -14,42 +14,44 @@ class Game
 
   def menu_loop(user_input)
     if user_input == "i" || user_input == "instructions"
-      @messages.instructions_message
+      # 17, 18 19 (method)
+      puts @messages.instructions_message
       gets
-      @messages.welcome_message
+      puts @messages.welcome_message
+      # method (allow game to recieve stub it in)
       user_input = gets.chomp.downcase.strip.delete(" ")
       menu_loop(user_input)
 
     elsif user_input == "q" || user_input == "quit"
-       @messages.quit_message
+       puts @messages.quit_message
 
     elsif user_input == "p" || user_input == "play"
       tracker
 
     else
-      @messages.welcome_not_valid
+      puts @messages.welcome_not_valid
       gets
-      @messages.welcome_message
+      puts @messages.welcome_message
       user_input = gets.chomp.downcase.strip.delete(" ")
       menu_loop(user_input)
     end
   end
 
 def tracker
-  @start_time = Time.now
-  @guess_counter = 0
   puts "Press enter to begin the game and start the clock!"
   gets
+  @start_time = Time.now
+  @guess_counter = 0
     play
 end
 
 def play
 
-  @messages.game_flow_message
+  puts @messages.game_flow_message
   @guess = gets.chomp.downcase.strip
 
   if @guess == "q" || @guess == "quit"
-    @messages.quit_message
+    puts @messages.quit_message
 
   elsif @guess == @color_code.join
     @guess_counter += 1
@@ -64,17 +66,17 @@ def play
 
 
   elsif @guess == "c" || @guess == "cheat"
-    @messages.cheat_message
+    puts @messages.cheat_message
     puts @color_code.join
     play
 
 
   elsif @guess.length > 4
-    @messages.guess_too_long
+    puts @messages.guess_too_long
     play
 
   elsif @guess.length < 4
-    @messages.guess_too_short
+    puts @messages.guess_too_short
     play
 
     end
@@ -83,6 +85,7 @@ def play
 
   def win
     puts "You have beat the Mastermind!!"
+    #break into method l 89, 90, & 91 - returns time thats passed (string interp)
     duration = Time.now - @start_time
     seconds = duration % 60
     minutes = (duration / 60) % 60
@@ -91,7 +94,7 @@ def play
     puts ">"
     user_input = gets.chomp.downcase.strip.delete(" ")
     if user_input == "q" || user_input == "quit"
-      @messages.quit_message
+      puts @messages.quit_message
 
     elsif user_input == "p" || user_input == "play"
         start_menu
