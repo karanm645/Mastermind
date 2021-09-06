@@ -7,6 +7,7 @@ class Game
 
   def start_menu
     @messages.welcome_message
+
     user_input = gets.chomp.downcase.strip.delete(" ")
     menu_loop(user_input)
   end
@@ -23,7 +24,7 @@ class Game
        @messages.quit_message
 
     elsif arg == "p" || arg == "play"
-      play
+      tracker
 
     else
       @messages.welcome_not_valid
@@ -34,15 +35,24 @@ class Game
     end
   end
 
-# change to guess
+def tracker
+  @start_time = Time.now
+  #counter
+  puts "Press enter to begin the game and start the clock!"
+  if gets
+    play
+  end
+end
+
 def play
+
   @messages.game_flow_message
   @guess = gets.chomp.downcase.strip
 
   if @guess == "q" || @guess == "quit"
     @messages.quit_message
 
-  elsif @guess == @color_code.to_s
+  elsif @guess == @color_code.join
   win
 
   elsif @guess.length == 4
@@ -51,35 +61,35 @@ def play
     print " #{@guess} has #{color_comparison.count} of the correct elements with #{position_comparison} in the correct positions."
     play
 
-      #press any key to guess again(send back to game flow loop)
+
   elsif @guess == "c" || @guess == "cheat"
-    @messages.cheat_message #cheat message will say "there's the answer, press enter to guess again"
+    @messages.cheat_message
     puts @color_code.join
     play
-    #returns to game_flow_loop
+
 
   elsif @guess.length > 4
     @messages.guess_too_long
-    play #message will include press enter to return to game"
-    #returns to game_flow_loop
+    play
 
   elsif @guess.length < 4
     @messages.guess_too_short
-     #message will include press enter to return to game"
-    #returns to game_flow_loop
     play
+
+  elsif @guess.length == 4
+    position_comparison = @color_code.zip(@guess.chars).count {|a,b| a == b}
+    color_comparison = @guess.chars & @color_code
+    print " #{@guess} has #{color_comparison.count} of the correct elements with #{position_comparison} in the correct positions."
+    play
+
     end
   end
 
-  # def evaluate_guess
-  #   @evaluator.color_comparison
-  #   @evaluator.position_comparison
-  #   puts " #{@guess.join} has #{color_comparison.count} of the correct elements with () in the correct positions."
-  #   play
-  # end
 
   def win
     puts "You have beat the Mastermind!!"
+    duration = Time.now - @start_time
+    puts "You guessed #{@color_code.join} in #{duration.round} seconds!"
   end
 
 
