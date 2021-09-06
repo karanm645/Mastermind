@@ -1,35 +1,35 @@
 class Messages
   def welcome_message
-    puts "Welcome to MASTERMIND
+   "Welcome to MASTERMIND
     Would you like to (p)lay, read the (i)nstructions, or (q)uit?
     >"
   end
 
   def welcome_not_valid
-    puts "That input is not valid.
+   "That input is not valid.
     Press enter to return to the welcome screen."
   end
 
   def instructions_message
-    puts "To play MASTERMIND, guess a
+   "To play MASTERMIND, guess a
     combination of these 4 colors:
     (r)ed, (g)reen, (y)ellow, (b)lue.
     Press enter to return to welcome screen."
   end
 
   def quit_message
-    puts "Nobody can beat the MASTERMIND! HA! HA!"
+   "Nobody can beat the MASTERMIND! HA! HA!"
   end
 
   def game_flow_message
-    puts "I have generated a secret color code consiting four colors:
+   "I have generated a secret color code consiting four colors:
     (r)ed, (g)reen, (b)lue and (y)ellow. Can you guess it?
     Enter your guess below!
     >"
   end
 
   def cheat_message
-    puts "The secret code is:"
+   "The secret code is:"
   end
 
   def guess_too_long
