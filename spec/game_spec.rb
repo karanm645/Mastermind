@@ -5,12 +5,20 @@ require './lib/code_generator'
 
 RSpec.describe Game do
   it "exists" do
-  game = Game.new
+    game = Game.new
 
-  expect(game).to be_an_instance_of(Game)
-  # expect(game.play).to include('Lets start!') ---- need help from instructors
+    expect(game).to be_an_instance_of(Game)
+  end
+
+  it "has start menu that generates secret code" do
+    game = Game.new
+    color_code = CodeGenerator.new
+
+    expect(start_menu). to
+  end
 end
 
+# expect(game.play).to include('Lets start!') ---- need help from instructors
  #it "gives instructions when given i/incstructions" do
  #end
 #   it "returns instructions when instructions given" do
