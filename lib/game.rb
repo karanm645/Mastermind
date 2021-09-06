@@ -1,30 +1,29 @@
 class Game
   def initialize
     @messages = Messages.new
-    @color_code = CodeGenerator.new.generate_secret
+    @color_code = CodeGenerator.new
     @evaluator = Evaluator.new
-    @guess_counter = 0
   end
 
   def start_menu
     @messages.welcome_message
-
+    @color_code = CodeGenerator.new.generate_secret
     user_input = gets.chomp.downcase.strip.delete(" ")
     menu_loop(user_input)
   end
 
-  def menu_loop(arg)
-    if arg == "i" || arg == "instructions"
+  def menu_loop(user_input)
+    if user_input == "i" || user_input == "instructions"
       @messages.instructions_message
       gets
       @messages.welcome_message
       user_input = gets.chomp.downcase.strip.delete(" ")
       menu_loop(user_input)
 
-    elsif arg == "q" || arg == "quit"
+    elsif user_input == "q" || user_input == "quit"
        @messages.quit_message
 
-    elsif arg == "p" || arg == "play"
+    elsif user_input == "p" || user_input == "play"
       tracker
 
     else
@@ -38,10 +37,10 @@ class Game
 
 def tracker
   @start_time = Time.now
+  @guess_counter = 0
   puts "Press enter to begin the game and start the clock!"
-  if gets
+  gets
     play
-  end
 end
 
 def play
@@ -88,38 +87,15 @@ def play
     seconds = duration % 60
     minutes = (duration / 60) % 60
     puts "Congratulations! You guessed the sequence '#{@color_code.join}' in #{@guess_counter} guesses over #{minutes.round} minutes, #{seconds.round} seconds."
+    puts "Do you want to (p)lay again or (q)uit?"
+    puts ">"
+    user_input = gets.chomp.downcase.strip.delete(" ")
+    if user_input == "q" || user_input == "quit"
+      @messages.quit_message
+
+    elsif user_input == "p" || user_input == "play"
+        start_menu
+      end
+    end
+
   end
-
-
-
-  #play game (guess -- evaluate -- sequence -- until game over)
-  #end game message starts loop over again
-  #game over method (game_over? return true if guess == @color_code)
-  #end_game message (conditionals for w/l , play again (if play again or not -- if yes restart))
-
-
-
-  # def input(arg)
-  #   if arg == "p" || arg == "play"
-  #     return play
-  #     #take us to into game_flow loop
-  #   end
-  #
-  # # def input(wrong)
-  # #   else
-  # #     return @messages.welcome_not_valid
-  # #     gets.chomp.downcase
-  # #     if arg == "h" || arg == "home"
-  # #       input
-  # #     end
-  #
-  # # end
-  # end
-
-  # below (put in module to use all the time)
-  # def get_input
-  #   player_input = gets.chomp.downcase.strip.delete(' ')
-  #   quit(player_input)
-  #   player_input
-  # end
-end
