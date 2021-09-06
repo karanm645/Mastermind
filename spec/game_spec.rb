@@ -1,5 +1,6 @@
 require './lib/game'
 require './lib/messages'
+require './lib/evaluator'
 require './lib/code_generator'
 
 RSpec.describe Game do
