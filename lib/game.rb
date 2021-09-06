@@ -89,7 +89,9 @@ def play
   def win
     puts "You have beat the Mastermind!!"
     duration = Time.now - @start_time
-    puts "You guessed #{@color_code.join} in #{duration.round} seconds!"
+    seconds = duration % 60
+    minutes = (duration / 60) % 60
+    puts "Congratulations! You guessed the sequence '#{@color_code.join}' in (number of guesses) over #{minutes.round} minutes, and #{seconds.round} seconds."
   end
 
 
