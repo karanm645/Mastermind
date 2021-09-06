@@ -3,6 +3,7 @@ class Game
     @messages = Messages.new
     @color_code = CodeGenerator.new.generate_secret
     @evaluator = Evaluator.new
+    @guess_counter = 0
   end
 
   def start_menu
@@ -37,7 +38,6 @@ class Game
 
 def tracker
   @start_time = Time.now
-  #counter
   puts "Press enter to begin the game and start the clock!"
   if gets
     play
@@ -53,12 +53,14 @@ def play
     @messages.quit_message
 
   elsif @guess == @color_code.join
+    @guess_counter += 1
   win
 
   elsif @guess.length == 4
     position_comparison = @color_code.zip(@guess.chars).count {|a,b| a == b}
     color_comparison = @guess.chars & @color_code
     print " #{@guess} has #{color_comparison.count} of the correct elements with #{position_comparison} in the correct positions."
+    @guess_counter += 1
     play
 
 
@@ -76,12 +78,6 @@ def play
     @messages.guess_too_short
     play
 
-  elsif @guess.length == 4
-    position_comparison = @color_code.zip(@guess.chars).count {|a,b| a == b}
-    color_comparison = @guess.chars & @color_code
-    print " #{@guess} has #{color_comparison.count} of the correct elements with #{position_comparison} in the correct positions."
-    play
-
     end
   end
 
@@ -91,7 +87,7 @@ def play
     duration = Time.now - @start_time
     seconds = duration % 60
     minutes = (duration / 60) % 60
-    puts "Congratulations! You guessed the sequence '#{@color_code.join}' in (number of guesses) over #{minutes.round} minutes, and #{seconds.round} seconds."
+    puts "Congratulations! You guessed the sequence '#{@color_code.join}' in #{@guess_counter} guesses over #{minutes.round} minutes, #{seconds.round} seconds."
   end
 
 
