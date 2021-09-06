@@ -1,11 +1,11 @@
 class Game
   def initialize
     @messages = Messages.new
-    @color_code = CodeGenerator.new.generate_secret.join
+    @color_code = CodeGenerator.new.generate_secret
+    @evaluator = Evaluator.new
   end
 
   def start_menu
-    puts @color_code
     @messages.welcome_message
     user_input = gets.chomp.downcase.strip.delete(" ")
     menu_loop(user_input)
@@ -34,32 +34,36 @@ class Game
     end
   end
 
-
+# change to guess
 def play
   @messages.game_flow_message
-  guess = gets.chomp.downcase.strip
+  @guess = gets.chomp.downcase.strip
 
-  if guess == "q" || guess == "quit"
+  if @guess == "q" || @guess == "quit"
     @messages.quit_message
 
-  elsif guess == @color_code.to_s
+  elsif @guess == @color_code.to_s
   win
 
-  elsif guess.length == 4
-      evaluate_guess # we will need to define this method, will be an enumerable, print the results
+  elsif @guess.length == 4
+    position_comparison = @color_code.zip(@guess.chars).count {|a,b| a == b}
+    color_comparison = @guess.chars & @color_code
+    print " #{@guess} has #{color_comparison.count} of the correct elements with #{position_comparison} in the correct positions."
+    play
+
       #press any key to guess again(send back to game flow loop)
-  elsif guess == "c" || guess == "cheat"
+  elsif @guess == "c" || @guess == "cheat"
     @messages.cheat_message #cheat message will say "there's the answer, press enter to guess again"
-    puts @color_code
-    play 
+    puts @color_code.join
+    play
     #returns to game_flow_loop
 
-  elsif guess.length > 4
+  elsif @guess.length > 4
     @messages.guess_too_long
     play #message will include press enter to return to game"
     #returns to game_flow_loop
 
-  elsif guess.length < 4
+  elsif @guess.length < 4
     @messages.guess_too_short
      #message will include press enter to return to game"
     #returns to game_flow_loop
@@ -67,18 +71,24 @@ def play
     end
   end
 
-  def evaluate_guess
-    puts "your guess is correct!"
-    #will start the timer, and guess counter, and code generator
-    #array comparison
-    #each enumerable index
-    #colors correct finds intersection of two arrays?
-    #only saves things it finds in both
-  end
+  # def evaluate_guess
+  #   @evaluator.color_comparison
+  #   @evaluator.position_comparison
+  #   puts " #{@guess.join} has #{color_comparison.count} of the correct elements with () in the correct positions."
+  #   play
+  # end
 
   def win
     puts "You have beat the Mastermind!!"
   end
+
+
+
+  #play game (guess -- evaluate -- sequence -- until game over)
+  #end game message starts loop over again
+  #game over method (game_over? return true if guess == @color_code)
+  #end_game message (conditionals for w/l , play again (if play again or not -- if yes restart))
+
 
 
   # def input(arg)
