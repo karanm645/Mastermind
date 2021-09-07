@@ -17,6 +17,10 @@ class Messages
     Press enter to return to welcome screen."
   end
 
+  def tracker_message
+    "Press enter to begin the game and start the clock!"
+  end
+
   def quit_message
    "Nobody can beat the MASTERMIND! HA! HA!"
   end
@@ -24,6 +28,7 @@ class Messages
   def game_flow_message
    "I have generated a secret color code consiting four colors:
     (r)ed, (g)reen, (b)lue and (y)ellow. Can you guess it?
+    Press (c)heat to see the code. 
     Enter your guess below!
     >"
   end
