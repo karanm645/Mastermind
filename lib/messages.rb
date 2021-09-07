@@ -17,6 +17,10 @@ class Messages
     Press enter to return to welcome screen."
   end
 
+  def tracker_message
+    "Press enter to begin the game and start the clock!"
+  end
+
   def quit_message
    "Nobody can beat the MASTERMIND! HA! HA!"
   end
