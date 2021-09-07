@@ -1,4 +1,5 @@
 class Messages
+
   def welcome_message
    "Welcome to MASTERMIND
     Would you like to (p)lay, read the (i)nstructions, or (q)uit?
@@ -25,10 +26,14 @@ class Messages
    "Nobody can beat the MASTERMIND! HA! HA!"
   end
 
+  def tracker_message
+  "Press enter to begin the game and start the clock!"
+  end
+
   def game_flow_message
    "I have generated a secret color code consiting four colors:
     (r)ed, (g)reen, (b)lue and (y)ellow. Can you guess it?
-    Press (c)heat to see the code. 
+    Press (c)heat to see the code.
     Enter your guess below!
     >"
   end
