@@ -2,7 +2,6 @@ class Game
   def initialize
     @messages = Messages.new
     @color_code = CodeGenerator.new
-    # @evaluator = Evaluator.new
   end
 
   def start_menu
@@ -12,73 +11,81 @@ class Game
     menu_loop(user_input)
   end
 
-  def menu_loop(user_input)
-    if user_input == "i" || user_input == "instructions"
-      # 17, 18 19 (method)
-      puts @messages.instructions_message
-      gets
-      puts @messages.welcome_message
-      # method (allow game to recieve stub it in)
-      user_input = gets.chomp.downcase.strip.delete(" ")
-      menu_loop(user_input)
-
-    elsif user_input == "q" || user_input == "quit"
-       puts @messages.quit_message
-
-    elsif user_input == "p" || user_input == "play"
-      tracker
-
-    else
-      puts @messages.welcome_not_valid
-      gets
-      puts @messages.welcome_message
-      user_input = gets.chomp.downcase.strip.delete(" ")
-      menu_loop(user_input)
-    end
+  def instructions
+    puts @messages.instructions_message
+    gets
+    puts @messages.welcome_message
+    user_input = gets.chomp.downcase.strip.delete(" ")
+    menu_loop(user_input)
   end
 
-def tracker
-  puts "Press enter to begin the game and start the clock!"
-  gets
-  @start_time = Time.now
-  @guess_counter = 0
-    play
-end
+  def quit
+     puts @messages.quit_message
+     exit
+  end
 
-def play
+  def welcome_not_valid
+    puts @messages.welcome_not_valid
+    gets
+    puts @messages.welcome_message
+    user_input = gets.chomp.downcase.strip.delete(" ")
+    menu_loop(user_input)
+  end
 
-  puts @messages.game_flow_message
-  @guess = gets.chomp.downcase.strip
-
-  if @guess == "q" || @guess == "quit"
-    puts @messages.quit_message
-
-  elsif @guess == @color_code.join
-    @guess_counter += 1
-  win
-
-  elsif @guess.length == 4
+  def guess_comparison
     position_comparison = @color_code.zip(@guess.chars).count {|a,b| a == b}
     color_comparison = @guess.chars & @color_code
     print " #{@guess} has #{color_comparison.count} of the correct elements with #{position_comparison} in the correct positions."
     @guess_counter += 1
     play
+  end
 
-
-  elsif @guess == "c" || @guess == "cheat"
+  def cheat
     puts @messages.cheat_message
     puts @color_code.join
     play
+  end
 
 
-  elsif @guess.length > 4
-    puts @messages.guess_too_long
+  def menu_loop(user_input)
+    if user_input == "i" || user_input == "instructions"
+      instructions
+      elsif user_input == "q" || user_input == "quit"
+      quit
+      elsif user_input == "p" || user_input == "play"
+      tracker
+      else welcome_not_valid
+      menu_loop(user_input)
+    end
+  end
+  # we can make tracker a new class
+  def tracker
+    puts @messages.tracker_message
+    gets
+    @start_time = Time.now
+    @guess_counter = 0
     play
+  end
 
-  elsif @guess.length < 4
-    puts @messages.guess_too_short
-    play
-
+  def play
+    puts @messages.game_flow_message
+    @guess = gets.chomp.downcase.strip
+    if @guess == "q" || @guess == "quit"
+        quit
+      elsif @guess == @color_code.join
+        @guess_counter += 1
+      win
+      #this could be made into a comparison class
+      elsif @guess.length == 4
+        guess_comparison
+      elsif @guess == "c" || @guess == "cheat"
+        cheat
+      elsif @guess.length > 4
+        puts @messages.guess_too_long
+        play
+      elsif @guess.length < 4
+        puts @messages.guess_too_short
+        play
     end
   end
 
@@ -95,10 +102,8 @@ def play
     user_input = gets.chomp.downcase.strip.delete(" ")
     if user_input == "q" || user_input == "quit"
       puts @messages.quit_message
-
-    elsif user_input == "p" || user_input == "play"
+      elsif user_input == "p" || user_input == "play"
         start_menu
-      end
     end
-
   end
+end
