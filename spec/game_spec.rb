@@ -6,17 +6,27 @@ require './lib/code_generator'
 RSpec.describe Game do
   it "exists" do
     game = Game.new
-
     expect(game).to be_an_instance_of(Game)
   end
 
-  it "has start menu that generates secret code" do
-    game = Game.new
-    color_code = CodeGenerator.new
+  it ""
 
-    expect(start_menu). to
-  end
+  it "displays messages after player has input something" do
+    @messages = Messages.new
+    expect(@messages).to be_an_instance_of(Messages)
+
+
 end
+
+
+
+end
+
+
+
+
+
+
 
 # expect(game.play).to include('Lets start!') ---- need help from instructors
  #it "gives instructions when given i/incstructions" do
@@ -44,4 +54,3 @@ end
 #
 #     expect(input2).to eq(messages.quit_message)
 #   end
-end
