@@ -1,6 +1,5 @@
 require './lib/game'
 require './lib/messages'
-require './lib/evaluator'
 require './lib/code_generator'
 
 RSpec.describe Game do
@@ -9,48 +8,28 @@ RSpec.describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
-  it ""
+#I think you can see where we were going with these tests, but since
+#we used so much recursion for the loops it was impossible to get them
+#to work without removing the recursive method which we discovered far too late.
 
-  it "displays messages after player has input something" do
-    @messages = Messages.new
-    expect(@messages).to be_an_instance_of(Messages)
+  it "quits and displays a quit message" do
+    game = game.new
+    expect(game.quit).to return_a(String)
+  end
+
+
+ it "displays the cheat message" do
+   game = Game.new
+   expect(game.cheat).to be_a(String)
+ end
+ 
+  it "starts the timer and guess counter at zero" do
+   game = Game.new
+   expect(game.tracker.(@start_time)).to_eq(0)
+   expect(game.tracker.(@guess_counter)).to_eq(0)
+ end
+
+
 
 
 end
-
-
-
-end
-
-
-
-
-
-
-
-# expect(game.play).to include('Lets start!') ---- need help from instructors
- #it "gives instructions when given i/incstructions" do
- #end
-#   it "returns instructions when instructions given" do
-#     game = Game.new
-#     messages = Messages.new
-#     input2 = game.input("instructions")
-#
-#     expect(input2).to eq(messages.instructions_message)
-#   end
-#
-#   it "returns quit message when q is given" do
-#     game = Game.new
-#     messages = Messages.new
-#     input1 = game.input("q")
-#
-#     expect(input1).to eq(messages.quit_message)
-#   end
-#
-#   it "returns quit message when quit is given" do
-#     game = Game.new
-#     messages = Messages.new
-#     input2 = game.input("quit")
-#
-#     expect(input2).to eq(messages.quit_message)
-#   end
