@@ -1,7 +1,19 @@
 class Messages
 
   def welcome_message
-   "Welcome to MASTERMIND
+   "
+
+##     ##    ###     ######  ######## ######## ########  ##     ## #### ##    ## ########
+###   ###   ## ##   ##    ##    ##    ##       ##     ## ###   ###  ##  ###   ## ##     ##
+#### ####  ##   ##  ##          ##    ##       ##     ## #### ####  ##  ####  ## ##     ##
+## ### ## ##     ##  ######     ##    ######   ########  ## ### ##  ##  ## ## ## ##     ##
+##     ## #########       ##    ##    ##       ##   ##   ##     ##  ##  ##  #### ##     ##
+##     ## ##     ## ##    ##    ##    ##       ##    ##  ##     ##  ##  ##   ### ##     ##
+##     ## ##     ##  ######     ##    ######## ##     ## ##     ## #### ##    ## ########
+
+
+
+   Welcome to MASTERMIND
     Would you like to (p)lay, read the (i)nstructions, or (q)uit?
     >"
   end
@@ -23,7 +35,13 @@ class Messages
   end
 
   def quit_message
-   "Nobody can beat the MASTERMIND! HA! HA!"
+   "Nobody can beat the MASTERMIND! 👽 HA! 👽 HA! 👽 HA!"
+
+
+
+
+
+
   end
 
   def tracker_message
