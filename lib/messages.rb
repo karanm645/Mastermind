@@ -27,13 +27,13 @@ class Messages
   end
 
   def tracker_message
-  "Press enter to begin the game and start the clock!"
+    "Press enter to begin the game and start the clock!"
   end
 
   def game_flow_message
-   "I have generated a secret color code consiting four colors:
+    "I have generated a secret color code consiting four colors:
     (r)ed, (g)reen, (b)lue and (y)ellow. Can you guess it?
-    Press (c)heat to see the code.
+    Press (c)heat to see the code, and (q)uit to quit.
     Enter your guess below!
     >"
   end
@@ -43,37 +43,24 @@ class Messages
   end
 
   def guess_too_long
-      puts "Sorry, that guess was too long.
-            Please enter FOUR characters.
-            Try again!"
+    "Sorry, that guess was too long.
+    Please enter FOUR characters.
+    Try again!"
   end
 
   def guess_too_short
-      puts "Sorry, that guess was too short.
-            Please enter FOUR characters.
-            Try again!"
+    "Sorry, that guess was too short.
+     Please enter FOUR characters.
+     Try again!"
   end
 
   def win_message
-      puts 'Congrats! Looks like you won. Would you like to (p)lay again
-      or (q)uit?'
+    'Congrats! You have bested the MASTERMIND.'
   end
 
-
-    # def time_message
-    #   if time something
-    #     string interp message
-    #   end
-    # end
-
-    # def guess_count_message
-    #   if guess is something
-    #     string interp message
-    #   end
-    # end
-
-  def endgame_message
-  puts  "Thanks for playing MASTERMIND!!!"
+  def play_again
+    "Would you like to (p)lay again or (q)uit?
+    >"
   end
 
   end

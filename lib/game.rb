@@ -20,8 +20,8 @@ class Game
   end
 
   def quit
-     puts @messages.quit_message
-     exit
+    puts @messages.quit_message
+    exit
   end
 
   def welcome_not_valid
@@ -46,7 +46,6 @@ class Game
     play
   end
 
-
   def menu_loop(user_input)
     if user_input == "i" || user_input == "instructions"
       instructions
@@ -58,7 +57,7 @@ class Game
       menu_loop(user_input)
     end
   end
-  # we can make tracker a new class
+
   def tracker
     puts @messages.tracker_message
     gets
@@ -89,16 +88,13 @@ class Game
     end
   end
 
-
   def win
-    puts "You have beat the Mastermind!!"
-    #break into method l 89, 90, & 91 - returns time thats passed (string interp)
+    puts @messages.win_message
     duration = Time.now - @start_time
     seconds = duration % 60
     minutes = (duration / 60) % 60
-    puts "Congratulations! You guessed the sequence '#{@color_code.join}' in #{@guess_counter} guesses over #{minutes.round} minutes, #{seconds.round} seconds."
-    puts "Do you want to (p)lay again or (q)uit?"
-    puts ">"
+    puts "You guessed the sequence '#{@color_code.join}' in #{@guess_counter} guesses over #{minutes.round} minutes, #{seconds.round} seconds."
+    puts @messages.play_again
     user_input = gets.chomp.downcase.strip.delete(" ")
     if user_input == "q" || user_input == "quit"
       puts @messages.quit_message
